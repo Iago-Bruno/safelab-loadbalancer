@@ -18,11 +18,11 @@ upstream nodes {
 
 #### Explicação das configurações adicionadas para a atividade
 
-Indicação que será colocado no header das requests ao nginx o ip da máquina que acessou a aplicação
+Indica que será colocado no header das requests ao nginx o ip da máquina que acessou a apli
 
 `proxy_set_header X-Real-IP $remote_addr`
 
-Indicação que será permitido a escrita de logs no loadbalancer e nos nodes vinculados ao mesmo
+Indica que será permitido a escrita de logs no loadbalancer e nos nodes no arquivo de log 'nginx-access.log'
 
 `access_log /var/log/nginx/nginx-access_log`
 
@@ -36,8 +36,8 @@ Define o formato dos logs que iram gerar nos arquivos de logs dos nodes
 
 ```
 log_format  main  '$http_x_real_ip - $remote_user [$time_local] "$request" '
-                      '$status $body_bytes_sent "$http_referer" '
-                      '"$http_user_agent" "$http_x_forwarded_for"';
+                  '$status $body_bytes_sent "$http_referer" '
+                  '"$http_user_agent" "$http_x_forwarded_for"';
 ```
 
 Principal mudança no formato do log que permite exibir o IP das requisições
@@ -54,13 +54,13 @@ Permite que os logs vão ser escritos no arquivo 'nginx.access.log' seguindo o f
 
 Foi adicionado a linha abaixo no 'location /' para que fosse permitido fazer as navegações entre telas pela aplicação do react
 
-`try_files $uri /index.html;`
+`try_files $uri /index.html`
 
 ## Explicação do comandos para criação e execução do loadbalancer e nodes
 
 ### Comando do loadbalancer
 
-Indicação que a porta 80 está liberada para acesso pelo host
+Indica que a porta 80 está liberada para acesso pelo host
 
 `-p 80:80`
 
